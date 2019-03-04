@@ -1,0 +1,22 @@
+@name Titus's Magic E2
+@inputs 
+@outputs 
+@persist 
+@trigger 
+@model
+if(first() | dupefinished())
+{     
+    A = 0
+    holoCreate(A)
+    holoParent(A,entity())
+    holoColor(A,vec(255))
+    holoModel(A, "models/error.mdl")
+    holoScale(A,vec(1))
+    holoPos(A,entity():toWorld(vec(0,0,0)))
+    holoAng(A,entity():toWorld(ang(0,0,0)))
+    
+        
+                                  
+}
+
+    #holoBodygroup(A,1,1) 

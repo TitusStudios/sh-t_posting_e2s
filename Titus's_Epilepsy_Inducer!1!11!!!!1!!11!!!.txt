@@ -1,0 +1,19 @@
+@name Titus's Epilepsy Inducer!1!11!!!!1!!11!!!
+@inputs E:entity E2:entity E3:entity E4:entity
+@outputs V1:vector V2:vector V3:vector V4:vector
+@persist E:entity
+@trigger 
+@model
+
+runOnTick(10)
+
+
+    E:setColor(random(0,255),random(0,255),random(0,255))
+    E2:setColor(random(0,255),random(0,255),random(0,255))
+    E3:setColor(random(0,255),random(0,255),random(0,255))
+    E4:setColor(random(0,255),random(0,255),random(0,255))
+    V1 = vec(random(0,255),random(0,255),random(0,255))
+    V2 = vec(random(0,255),random(0,255),random(0,255))
+    V3 = vec(random(0,255),random(0,255),random(0,255))
+    V4 = vec(random(0,255),random(0,255),random(0,255))
+

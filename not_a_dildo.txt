@@ -1,0 +1,62 @@
+@name not a dildo
+@inputs On
+@outputs 
+@persist A Scale
+@trigger On
+
+Scale = 1
+Me=owner()
+Chip=entity()
+
+if(On & ~On)
+{
+    soundPlay(1,0,"ambient/machines/power_transformer_loop_1.wav")
+    soundPitch(1,170)
+    soundVolume(1,0.4)
+    
+    soundPlay(2,0,"ambient/machines/60hzhum.wav")
+    soundPitch(2,200)
+    soundVolume(2,0.25)
+    }
+    
+if(!On & ~On)
+{
+    soundStop(1,0.25)
+    soundStop(22,0.25)
+    }
+        
+if(first()|dupefinished()){
+
+    holoCreate(1,Chip:toWorld(+vec(0,0,9) * Scale),vec(0.5),Chip:toWorld(+ang(180,270,0)))
+    holoModel(1,"models/sprops/cylinders/size_4/cylinder_9x36.mdl",1)
+    holoMaterial(1,"sprops/textures/sprops_metal5") 
+    holoColor(1,vec(225,0,225))
+    holoScale(1,vec(0.25,0.25,0.35) * Scale)
+    holoParent(1,Chip)
+        
+    holoCreate(2,Chip:toWorld(+vec(0,0,1) * Scale),vec(0.5),Chip:toWorld(+ang(0,0,0)))
+    holoModel(2,"models/sprops/misc/fittings/cred_9_6_short.mdl",1)
+    holoMaterial(2,"sprops/textures/sprops_metal5") 
+    holoColor(2,vec(225,0,225))
+    holoScale(2,vec(0.8,0.8,0.25)* Scale)
+    holoParent(2,Chip)
+    
+    holoCreate(3,Chip:toWorld(+vec(0,0,15) * Scale),vec(0.5),Chip:toWorld(+ang(0,0,0)))
+    holoModel(3,"models/sprops/misc/domes/size_1/dome_12x12.mdl",1)
+    holoMaterial(3,"sprops/textures/sprops_metal5") 
+    holoColor(3,vec(225,0,225))
+    holoScale(3,vec(0.2,0.2,0.2) * Scale)
+    holoParent(3,1)
+}
+
+
+    holoPos(1,entity():toWorld(vec(0,0,(5+ Scale * 3)+(A * 0.75))))  
+    holoAng(1,entity():toWorld(+ang(180+(A * 1),270,0+(A * 3))))   
+    
+if(On)
+{
+    interval(20)        
+    A = !A
+    }
+
+
