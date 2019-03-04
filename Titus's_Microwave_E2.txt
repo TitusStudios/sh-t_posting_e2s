@@ -1,0 +1,129 @@
+@name Titus's Microwave E2
+@inputs
+@outputs Pitch
+@persist Start Pitch Start1
+@trigger 
+@model models/props/cs_office/microwave.mdl
+ 
+E = entity()
+E:setAlpha(0)
+
+if(first() | dupefinished()){
+      
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoColor(A,vec(255))
+    holoScale(A,vec(1))
+    holoModel(A, "models/props/cs_office/microwave.mdl")
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    
+    A = 2
+    holoCreate(A)
+    holoParent(A,E)
+    holoColor(A,vec(255))
+    holoScale(A,vec(0))
+    holoModel(A, "models/sprops/geometry/sphere_3.mdl")
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    
+    A = 3
+    holoCreate(A)
+    holoParent(A,E)
+    holoColor(A,vec(0,255,0))
+    holoScale(A,vec(0.08))
+    holoModel(A, "models/sprops/misc/alphanum/alphanum_8.mdl")
+    holoBodygroup(A,0,3)
+    holoPos(A,E:toWorld(vec(-11.95,10,13.75)))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    
+    A = 4
+    holoCreate(A)
+    holoParent(A,E)
+    holoColor(A,vec(0,255,0))
+    holoScale(A,vec(0.08))
+    holoModel(A, "models/sprops/misc/alphanum/alphanum_8.mdl")
+    holoBodygroup(A,0,3)
+    holoPos(A,E:toWorld(vec(-12.95,10,13.75)))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    
+    A = 5
+    holoCreate(A)
+    holoParent(A,E)
+    holoColor(A,vec(0,255,0))
+    holoScale(A,vec(0.08))
+    holoModel(A, "models/sprops/misc/alphanum/alphanum_8.mdl")
+    holoBodygroup(A,0,3)
+    holoPos(A,E:toWorld(vec(-13.57,10,13.75)))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    
+    
+    
+}
+   
+interval(150) 
+ 
+if(owner():weapon():type()=="weapon_crowbar"){   
+if(changed(owner():keyUse())&owner():keyUse()){
+    soundPlay(2,0,"tay/memes/get_ready.mp3")
+    timer("Start2",3000)
+}
+}
+
+#R=random(0,9)
+#R2=random(0,9)
+#R3=random(0,9)
+
+#holoModel(3, "models/sprops/misc/alphanum/alphanum_"+R+".mdl")
+#holoModel(4, "models/sprops/misc/alphanum/alphanum_"+R2+".mdl")
+#holoModel(5, "models/sprops/misc/alphanum/alphanum_"+R3+".mdl")
+
+#tay/memes/get_ready.mp3
+
+if(clk("Start2")){
+    soundPlay(1,0,"jessev92/bms/ambient/objects/microwave_start_loop.wav")
+    soundPlay(4,0,"jessev92/meangreens/music/art.mp3")
+    
+    Start = 1
+    timer("MStart",5000)   
+}
+
+if(Start)
+{
+    lightCreate(1,E:toWorld(vec(0,30,0))+vec(),vec(255,151,66),30,15)
+    lightParent(1,E)
+}
+else
+{
+    lightRemoveAll()
+}
+
+if(clk("MStart")){
+    Start1 = 1
+    timer("MStart2",19500)
+}
+
+if(Start1){
+Pitch++
+}
+
+if(clk("MStart2")){
+    soundStop(4,0.3)
+    soundPlay(3,0,"tay/memes/now_its_ready.mp3")
+}
+
+if(Pitch>150){
+stopAllTimers()
+soundStop(1,1)
+soundStop(2,1)
+soundStop(4,1)
+local Bomb = propSpawn("models/props_c17/oildrum001_explosive.mdl", entity():pos(), ang(), 1)
+local Bomb1 = propSpawn("models/props_junk/watermelon01.mdl", entity():pos(), ang(), 1)
+Bomb:propBreak()
+selfDestruct()
+}
+
+soundPitch(1,Pitch+100)
+    
+#jessev92/bms/ambient/objects/microwave_start_loop.wav

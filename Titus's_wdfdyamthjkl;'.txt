@@ -1,0 +1,37 @@
+@name Titus's wdfdyamthjkl;'
+@inputs #E:entity Angle
+@outputs
+@persist A
+@trigger 
+@model
+ 
+#E = entity()
+#E:setAlpha(0)
+#[
+if(first() | dupefinished()){
+      
+#---- Holo
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoColor(A,vec(255))
+    holoScale(A,vec(1))
+    holoModel(A, "models/editor/axis_helper.mdl")
+    #holoMaterial(A,"models/proppertextures/aluminum")
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+      
+    
+}
+]#
+if(changed(clk())){
+    soundPlay(1,0,"jessev92/memes/killbill_siren.mp3")
+}
+
+interval(100)
+
+A = random(0,125)
+
+soundPitch(1,40+A)
+
