@@ -5,6 +5,11 @@
 @trigger 
 @model
 
+# -- This E2 is based on the fact that your stupid and want to use this to hurt your eyes
+# -- WARNING! If you break your eyes or someone elses, don't blame me.... -Your fault sorry!
+
+# E E E E E E E E E E E E E - Hanksabutt
+
 runOnTick(10)
 
 
